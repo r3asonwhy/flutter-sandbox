@@ -10,6 +10,8 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+  final _controller = TextEditingController();
+
   List toDoList = [
     ["Make turok", false],
     ["Work", true],
@@ -21,11 +23,36 @@ class _HomePageState extends State<HomePage> {
     });
   }
 
+  void saveNewTask() {
+    if (_controller.text.isEmpty) {
+      return;
+    }
+
+    setState(() {
+      toDoList.add([_controller.text, false]);
+      _controller.clear();
+    });
+
+    Navigator.of(context).pop();
+  }
+
+  void cancelTask() {
+    setState(() {
+      _controller.clear();
+    });
+
+    Navigator.of(context).pop();
+  }
+
   void createNewTask() {
     showDialog(
       context: context,
       builder: (contex) {
-        return DialogBox();
+        return DialogBox(
+          controller: _controller,
+          onSave: saveNewTask,
+          onCancel: cancelTask,
+        );
       },
     );
   }
@@ -34,7 +61,7 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.yellow[200],
-      appBar: AppBar(title: Text('TO DO')),
+      appBar: AppBar(title: Text('TO DO'), leading: Icon(Icons.task, size: 40)),
       floatingActionButton: FloatingActionButton(
         onPressed: createNewTask,
         hoverColor: Colors.yellow,
