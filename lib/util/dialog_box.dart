@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:myapp/util/my_button.dart';
 
 class DialogBox extends StatelessWidget {
-  final controller;
+  final TextEditingController controller;
   VoidCallback onSave;
   VoidCallback onCancel;
 
