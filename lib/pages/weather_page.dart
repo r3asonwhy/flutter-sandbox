@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:lottie/lottie.dart';
 import 'package:myapp/models/weather_model.dart';
 import 'package:myapp/services/weather_service.dart';
@@ -62,14 +63,21 @@ class _WeatherPageState extends State<WeatherPage> {
     return Scaffold(
       body: Center(
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
+          mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: [
-            Text(_weather?.cityName ?? "Loading city.."),
+            Column(
+              children: [
+                Icon(Icons.location_on),
+                Text(_weather?.cityName ?? "Loading city.."),
+              ],
+            ),
             Lottie.asset(
               'assets/${getWeatherAnimation(_weather?.mainCondition)}.json',
             ),
-            Text('${_weather?.temperature.round()}°C'),
-            Text('${_weather?.mainCondition}'),
+            Text(
+              '${_weather?.temperature.round()}°',
+              style: TextStyle(fontSize: 40),
+            ),
           ],
         ),
       ),
