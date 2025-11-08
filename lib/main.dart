@@ -10,6 +10,10 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(debugShowCheckedModeBanner: false, home: IntroPage());
+    return MaterialApp(
+      debugShowCheckedModeBanner: false,
+      home: IntroPage(),
+      theme: ThemeData(brightness: Brightness.dark),
+    );
   }
 }
