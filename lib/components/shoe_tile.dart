@@ -3,7 +3,8 @@ import 'package:myapp/models/shoe.dart';
 
 class ShoeTile extends StatelessWidget {
   Shoe shoe;
-  ShoeTile({super.key, required this.shoe});
+  void Function()? onTap;
+  ShoeTile({super.key, required this.shoe, required this.onTap});
 
   @override
   Widget build(BuildContext context) {
@@ -24,7 +25,13 @@ class ShoeTile extends StatelessWidget {
               child: Image.asset('lib/assets/${shoe.imagePath}'),
             ),
           ),
-          Text(shoe.description, style: TextStyle(color: Colors.white)),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 25),
+            child: Text(
+              shoe.description,
+              style: TextStyle(color: Colors.white),
+            ),
+          ),
           Padding(
             padding: const EdgeInsets.only(left: 25),
             child: Row(
@@ -44,20 +51,26 @@ class ShoeTile extends StatelessWidget {
                     SizedBox(height: 5),
                     Text(
                       '\$${shoe.price}',
-                      style: TextStyle(color: Colors.red),
+                      style: TextStyle(
+                        color: Colors.red,
+                        fontStyle: FontStyle.italic,
+                      ),
                     ),
                   ],
                 ),
-                Container(
-                  padding: EdgeInsets.all(20),
-                  decoration: BoxDecoration(
-                    color: Colors.deepPurpleAccent,
-                    borderRadius: BorderRadius.only(
-                      topLeft: Radius.circular(12),
-                      bottomRight: Radius.circular(12),
+                GestureDetector(
+                  onTap: onTap,
+                  child: Container(
+                    padding: EdgeInsets.all(20),
+                    decoration: BoxDecoration(
+                      color: Colors.deepPurpleAccent,
+                      borderRadius: BorderRadius.only(
+                        topLeft: Radius.circular(12),
+                        bottomRight: Radius.circular(12),
+                      ),
                     ),
+                    child: Icon(Icons.shopping_bag),
                   ),
-                  child: Icon(Icons.add),
                 ),
               ],
             ),

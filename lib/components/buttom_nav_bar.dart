@@ -17,6 +17,7 @@ class MyButtomNavBar extends StatelessWidget {
         tabBackgroundColor: Colors.black,
         mainAxisAlignment: MainAxisAlignment.center,
         tabBorderRadius: 16,
+        gap: 8,
         onTabChange: (value) => onTabChange!(value),
         tabs: [
           GButton(icon: Icons.home, text: 'Shop'),

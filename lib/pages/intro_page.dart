@@ -37,16 +37,16 @@ class IntroPage extends StatelessWidget {
                 textAlign: TextAlign.center,
               ),
               SizedBox(height: 48),
-              GestureDetector(
-                onTap: () => Navigator.push(
+
+              ElevatedButton(
+                onPressed: () => Navigator.push(
                   context,
                   MaterialPageRoute(builder: (context) => HomePage()),
                 ),
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: Colors.deepPurpleAccent,
+                ),
                 child: Container(
-                  decoration: BoxDecoration(
-                    color: Colors.deepPurpleAccent,
-                    borderRadius: BorderRadius.circular(12),
-                  ),
                   padding: EdgeInsets.all(25),
                   child: Center(
                     child: Text(
